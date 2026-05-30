@@ -40,7 +40,7 @@ class CompoundInterestCalculatorTest {
     }
 
     @Test
-    fun annualCompoundingAppliesAtYearEndBeforeFinalContribution() {
+    fun annualCompoundingAppliesToFullAccountBalanceAtYearEnd() {
         val result = CompoundInterestCalculator.calculate(
             CalculationInput(
                 initialAmount = 1_000.0,
@@ -51,13 +51,13 @@ class CompoundInterestCalculatorTest {
             )
         )
 
-        assertEquals(2_320.0, result.finalBalance, 0.01)
+        assertEquals(2_452.0, result.finalBalance, 0.01)
         assertEquals(2_200.0, result.totalContributed, 0.01)
-        assertEquals(120.0, result.totalInterest, 0.01)
+        assertEquals(252.0, result.totalInterest, 0.01)
     }
 
     @Test
-    fun quarterlyCompoundingAppliesAfterEachDepositReachesAQuarter() {
+    fun quarterlyCompoundingAppliesToFullAccountBalanceEachQuarter() {
         val result = CompoundInterestCalculator.calculate(
             CalculationInput(
                 initialAmount = 1_000.0,
@@ -68,13 +68,13 @@ class CompoundInterestCalculatorTest {
             )
         )
 
-        assertEquals(2_380.60, result.finalBalance, 0.01)
+        assertEquals(2_405.70, result.finalBalance, 0.01)
         assertEquals(2_200.0, result.totalContributed, 0.01)
-        assertEquals(180.60, result.totalInterest, 0.01)
+        assertEquals(205.70, result.totalInterest, 0.01)
     }
 
     @Test
-    fun dailyCompoundingAppliesAfterEachDepositReachesADailyPeriod() {
+    fun dailyCompoundingUsesAccountLevelFractionalMonthlyIntervals() {
         val result = CompoundInterestCalculator.calculate(
             CalculationInput(
                 initialAmount = 1_000.0,
@@ -85,9 +85,9 @@ class CompoundInterestCalculatorTest {
             )
         )
 
-        assertEquals(2_395.88, result.finalBalance, 0.01)
+        assertEquals(2_396.26, result.finalBalance, 0.01)
         assertEquals(2_200.0, result.totalContributed, 0.01)
-        assertEquals(195.88, result.totalInterest, 0.01)
+        assertEquals(196.26, result.totalInterest, 0.01)
     }
 
     @Test

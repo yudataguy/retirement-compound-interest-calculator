@@ -8,28 +8,24 @@ object CompoundInterestCalculator {
     fun calculate(input: CalculationInput): CalculationResult {
         val years = max(0, input.years)
         val totalMonths = years * 12
-        val startingBalance = max(0.0, input.initialAmount)
-        var contributed = startingBalance
+        var balance = max(0.0, input.initialAmount)
+        var contributed = balance
         val annualRate = max(0.0, input.annualRatePercent) / 100.0
         val periodRate = if (annualRate == 0.0) 0.0 else annualRate / input.compoundFrequency.periodsPerYear
         val monthsPerPeriod = 12.0 / input.compoundFrequency.periodsPerYear
+        var monthsSinceCompound = 0.0
         val points = mutableListOf<YearlyPoint>()
         val monthlyContribution = max(0.0, input.monthlyContribution)
-        val balances = mutableListOf(CompoundBalance(startingBalance))
-        var balance = balances.sumOf { it.amount }
 
         for (month in 1..totalMonths) {
-            balances.forEach { compoundBalance ->
-                compoundBalance.monthsSinceCompound += 1.0
-                while (compoundBalance.monthsSinceCompound + COMPOUNDING_EPSILON >= monthsPerPeriod) {
-                    compoundBalance.amount += compoundBalance.amount * periodRate
-                    compoundBalance.monthsSinceCompound -= monthsPerPeriod
-                }
+            monthsSinceCompound += 1.0
+            while (monthsSinceCompound + COMPOUNDING_EPSILON >= monthsPerPeriod) {
+                balance += balance * periodRate
+                monthsSinceCompound -= monthsPerPeriod
             }
 
-            balances += CompoundBalance(monthlyContribution)
+            balance += monthlyContribution
             contributed += monthlyContribution
-            balance = balances.sumOf { it.amount }
 
             if (month % 12 == 0) {
                 points += YearlyPoint(
@@ -49,9 +45,4 @@ object CompoundInterestCalculator {
             yearlyPoints = points
         )
     }
-
-    private data class CompoundBalance(
-        var amount: Double,
-        var monthsSinceCompound: Double = 0.0
-    )
 }
