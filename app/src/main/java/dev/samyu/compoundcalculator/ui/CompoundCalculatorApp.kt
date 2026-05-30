@@ -41,7 +41,11 @@ fun CompoundCalculatorApp() {
                     .padding(padding)
                     .padding(horizontal = 20.dp)
             ) {
-                Text("Step ${state.step + 1} of 3")
+                when (state.step) {
+                    0 -> StartStep(state)
+                    1 -> GrowthStep(state)
+                    else -> UnderstandStep(state)
+                }
             }
         }
     }
