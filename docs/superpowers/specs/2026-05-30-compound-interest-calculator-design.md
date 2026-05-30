@@ -80,7 +80,10 @@ The graph should be readable on small screens:
 - balance line
 - contributed-money line or shaded reference
 - simple axis labels
+- date context for selected points
 - no dense grid or finance-dashboard styling
+
+The chart should avoid crowding the screen with every month or year label. It should show a small number of axis labels, then provide the exact month or year and amount through an interaction such as tapping or dragging on the graph. This helps users understand what the balance is at a specific date without making the graph hard to read.
 
 ## Architecture
 
