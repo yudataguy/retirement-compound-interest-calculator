@@ -40,6 +40,75 @@ class CompoundInterestCalculatorTest {
     }
 
     @Test
+    fun annualCompoundingAppliesAtYearEndBeforeFinalContribution() {
+        val result = CompoundInterestCalculator.calculate(
+            CalculationInput(
+                initialAmount = 1_000.0,
+                monthlyContribution = 100.0,
+                years = 1,
+                annualRatePercent = 12.0,
+                compoundFrequency = CompoundFrequency.ANNUALLY
+            )
+        )
+
+        assertEquals(2_320.0, result.finalBalance, 0.01)
+        assertEquals(2_200.0, result.totalContributed, 0.01)
+        assertEquals(120.0, result.totalInterest, 0.01)
+    }
+
+    @Test
+    fun quarterlyCompoundingAppliesAfterEachDepositReachesAQuarter() {
+        val result = CompoundInterestCalculator.calculate(
+            CalculationInput(
+                initialAmount = 1_000.0,
+                monthlyContribution = 100.0,
+                years = 1,
+                annualRatePercent = 12.0,
+                compoundFrequency = CompoundFrequency.QUARTERLY
+            )
+        )
+
+        assertEquals(2_380.60, result.finalBalance, 0.01)
+        assertEquals(2_200.0, result.totalContributed, 0.01)
+        assertEquals(180.60, result.totalInterest, 0.01)
+    }
+
+    @Test
+    fun dailyCompoundingAppliesAfterEachDepositReachesADailyPeriod() {
+        val result = CompoundInterestCalculator.calculate(
+            CalculationInput(
+                initialAmount = 1_000.0,
+                monthlyContribution = 100.0,
+                years = 1,
+                annualRatePercent = 12.0,
+                compoundFrequency = CompoundFrequency.DAILY
+            )
+        )
+
+        assertEquals(2_395.88, result.finalBalance, 0.01)
+        assertEquals(2_200.0, result.totalContributed, 0.01)
+        assertEquals(195.88, result.totalInterest, 0.01)
+    }
+
+    @Test
+    fun negativeInputsClampToZero() {
+        val result = CompoundInterestCalculator.calculate(
+            CalculationInput(
+                initialAmount = -500.0,
+                monthlyContribution = -100.0,
+                years = -2,
+                annualRatePercent = -10.0,
+                compoundFrequency = CompoundFrequency.MONTHLY
+            )
+        )
+
+        assertEquals(0.0, result.finalBalance, 0.01)
+        assertEquals(0.0, result.totalContributed, 0.01)
+        assertEquals(0.0, result.totalInterest, 0.01)
+        assertEquals(0, result.yearlyPoints.size)
+    }
+
+    @Test
     fun zeroYearsReturnsInitialAmountOnly() {
         val result = CompoundInterestCalculator.calculate(
             CalculationInput(
