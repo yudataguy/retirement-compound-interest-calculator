@@ -57,6 +57,23 @@ class CompoundInterestCalculatorTest {
     }
 
     @Test
+    fun semiannualCompoundingAppliesToFullAccountBalanceTwicePerYear() {
+        val result = CompoundInterestCalculator.calculate(
+            CalculationInput(
+                initialAmount = 1_000.0,
+                monthlyContribution = 100.0,
+                years = 1,
+                annualRatePercent = 12.0,
+                compoundFrequency = CompoundFrequency.SEMIANNUALLY
+            )
+        )
+
+        assertEquals(2_421.40, result.finalBalance, 0.01)
+        assertEquals(2_200.0, result.totalContributed, 0.01)
+        assertEquals(221.40, result.totalInterest, 0.01)
+    }
+
+    @Test
     fun quarterlyCompoundingAppliesToFullAccountBalanceEachQuarter() {
         val result = CompoundInterestCalculator.calculate(
             CalculationInput(
@@ -88,6 +105,23 @@ class CompoundInterestCalculatorTest {
         assertEquals(2_396.26, result.finalBalance, 0.01)
         assertEquals(2_200.0, result.totalContributed, 0.01)
         assertEquals(196.26, result.totalInterest, 0.01)
+    }
+
+    @Test
+    fun noMonthlyContributionGrowsInitialAmountOnly() {
+        val result = CompoundInterestCalculator.calculate(
+            CalculationInput(
+                initialAmount = 1_000.0,
+                monthlyContribution = 0.0,
+                years = 1,
+                annualRatePercent = 12.0,
+                compoundFrequency = CompoundFrequency.MONTHLY
+            )
+        )
+
+        assertEquals(1_126.83, result.finalBalance, 0.01)
+        assertEquals(1_000.0, result.totalContributed, 0.01)
+        assertEquals(126.83, result.totalInterest, 0.01)
     }
 
     @Test
