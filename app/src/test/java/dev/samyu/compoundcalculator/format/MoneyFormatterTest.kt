@@ -13,4 +13,9 @@ class MoneyFormatterTest {
     fun formatsSelectedSymbol() {
         assertEquals("€90.00", MoneyFormatter.format(90.0, "€"))
     }
+
+    @Test
+    fun fallsBackToUsdSymbolWhenBlank() {
+        assertEquals("$12.00", MoneyFormatter.format(12.0, ""))
+    }
 }
