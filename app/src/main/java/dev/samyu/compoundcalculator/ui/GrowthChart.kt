@@ -3,9 +3,13 @@ package dev.samyu.compoundcalculator.ui
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,6 +31,14 @@ fun GrowthChart(points: List<YearlyPoint>, currencySymbol: String) {
     val selected = points.getOrNull(selectedIndex)
 
     Column {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            LegendItem(color = Color(0xFF246B45), label = "Ending balance")
+            LegendItem(color = Color(0xFF9AB7A4), label = "Money added")
+        }
+        Spacer(Modifier.height(8.dp))
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,9 +89,32 @@ fun GrowthChart(points: List<YearlyPoint>, currencySymbol: String) {
         }
 
         if (selected != null) {
-            Text("Year ${selected.year}: ${MoneyFormatter.format(selected.balance, currencySymbol)}")
+            Text(
+                "End of year ${selected.year} (month ${selected.month}): " +
+                    MoneyFormatter.format(selected.balance, currencySymbol)
+            )
             Text("You added ${MoneyFormatter.format(selected.contributed, currencySymbol)}")
             Text("Your money earned ${MoneyFormatter.format(selected.interest, currencySymbol)}")
         }
+    }
+}
+
+@Composable
+private fun LegendItem(color: Color, label: String) {
+    Row {
+        Canvas(
+            modifier = Modifier
+                .width(24.dp)
+                .height(16.dp)
+        ) {
+            drawLine(
+                color = color,
+                start = Offset(0f, size.height / 2f),
+                end = Offset(size.width, size.height / 2f),
+                strokeWidth = 6f
+            )
+        }
+        Spacer(Modifier.width(6.dp))
+        Text(label)
     }
 }

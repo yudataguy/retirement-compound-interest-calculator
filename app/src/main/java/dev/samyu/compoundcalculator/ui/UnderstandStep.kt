@@ -41,7 +41,11 @@ fun UnderstandStep(state: AppState) {
         GrowthChart(result.yearlyPoints, state.currencySymbol)
         Spacer(Modifier.height(20.dp))
         result.yearlyPoints.forEach { point ->
-            Text("Year ${point.year}: ${MoneyFormatter.format(point.balance, state.currencySymbol)}")
+            Text("Year ${point.year}")
+            Text("Balance: ${MoneyFormatter.format(point.balance, state.currencySymbol)}")
+            Text("Added: ${MoneyFormatter.format(point.contributed, state.currencySymbol)}")
+            Text("Growth: ${MoneyFormatter.format(point.interest, state.currencySymbol)}")
+            Spacer(Modifier.height(12.dp))
         }
     }
 }
