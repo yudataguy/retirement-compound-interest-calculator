@@ -10,7 +10,7 @@ class AppState {
     var step by mutableIntStateOf(0)
     var initialAmount by mutableStateOf("1000")
     var monthlyContribution by mutableStateOf("100")
-    var currencySymbol by mutableStateOf("$")
+    var currencySymbol by mutableStateOf("\$")
     var years by mutableStateOf("10")
     var annualRate by mutableStateOf("7")
     var frequency by mutableStateOf(CompoundFrequency.MONTHLY)
