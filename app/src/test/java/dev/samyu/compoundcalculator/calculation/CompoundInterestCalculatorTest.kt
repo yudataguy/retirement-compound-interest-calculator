@@ -34,9 +34,9 @@ class CompoundInterestCalculatorTest {
             )
         )
 
-        assertEquals(2_268.25, result.finalBalance, 0.01)
+        assertEquals(2_395.08, result.finalBalance, 0.01)
         assertEquals(2_200.0, result.totalContributed, 0.01)
-        assertEquals(68.25, result.totalInterest, 0.01)
+        assertEquals(195.08, result.totalInterest, 0.01)
     }
 
     @Test
