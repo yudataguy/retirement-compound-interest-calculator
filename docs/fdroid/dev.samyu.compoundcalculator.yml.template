@@ -2,16 +2,16 @@ Categories:
   - Money
 License: MIT
 AuthorName: Sam Yu
-SourceCode: REPLACE_WITH_PUBLIC_REPO_URL
-IssueTracker: REPLACE_WITH_PUBLIC_REPO_ISSUES_URL
+SourceCode: https://github.com/yudataguy/retirement-compound-interest-calculator
+IssueTracker: https://github.com/yudataguy/retirement-compound-interest-calculator/issues
 
 RepoType: git
-Repo: REPLACE_WITH_PUBLIC_REPO_CLONE_URL
+Repo: https://github.com/yudataguy/retirement-compound-interest-calculator.git
 
 Builds:
   - versionName: '0.1.0'
     versionCode: 1
-    commit: REPLACE_WITH_RELEASE_TAG_OR_COMMIT
+    commit: v0.1.0
     subdir: app
     gradle:
       - yes
