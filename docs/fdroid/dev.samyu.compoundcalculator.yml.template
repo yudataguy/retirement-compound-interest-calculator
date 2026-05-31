@@ -1,0 +1,22 @@
+Categories:
+  - Money
+License: MIT
+AuthorName: Sam Yu
+SourceCode: REPLACE_WITH_PUBLIC_REPO_URL
+IssueTracker: REPLACE_WITH_PUBLIC_REPO_ISSUES_URL
+
+RepoType: git
+Repo: REPLACE_WITH_PUBLIC_REPO_CLONE_URL
+
+Builds:
+  - versionName: '0.1.0'
+    versionCode: 1
+    commit: REPLACE_WITH_RELEASE_TAG_OR_COMMIT
+    subdir: app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: '0.1.0'
+CurrentVersionCode: 1

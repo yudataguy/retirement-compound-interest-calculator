@@ -1,0 +1,1 @@
+Initial release with a guided compound interest calculator, selectable currency symbols, compounding frequency options, an interactive growth chart, and a year-by-year breakdown.

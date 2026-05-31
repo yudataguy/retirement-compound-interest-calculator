@@ -1,0 +1,20 @@
+Compound Interest Calculator helps people estimate how savings or investments may grow over time.
+
+It uses a guided three-step flow:
+
+* Enter the money you have now, what you add each month, and the currency symbol to display.
+* Choose how long the money can grow, an estimated yearly interest rate, and how often interest is added.
+* Review the ending balance, total money added, interest earned, an interactive graph, and a year-by-year breakdown.
+
+The app is designed for people who are not comfortable with financial jargon. It uses plain labels such as "You added" and "Your money earned" to make the result easier to understand.
+
+Privacy:
+
+* No ads
+* No analytics
+* No tracking
+* No Google services
+* No network permission
+* No exchange-rate downloads
+
+This calculator is an estimate, not financial advice.
