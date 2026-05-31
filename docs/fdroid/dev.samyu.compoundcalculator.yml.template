@@ -11,7 +11,7 @@ Repo: https://github.com/yudataguy/retirement-compound-interest-calculator.git
 Builds:
   - versionName: '0.1.0'
     versionCode: 1
-    commit: v0.1.0
+    commit: e6bcbab3ad9ade0a11d4e74d55aa3e48bd25e01a
     subdir: app
     gradle:
       - yes
