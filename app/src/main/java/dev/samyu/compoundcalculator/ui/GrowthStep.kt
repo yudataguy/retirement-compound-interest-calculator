@@ -33,7 +33,7 @@ fun GrowthStep(state: AppState) {
         OutlinedTextField(
             value = state.years,
             onValueChange = { state.years = it },
-            label = { Text("Years") },
+            label = { Text("Years to grow") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
