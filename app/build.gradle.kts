@@ -42,6 +42,11 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            // Don't embed the git commit hash in the APK — it breaks
+            // reproducible builds, since the hash depends on the build commit.
+            vcsInfo {
+                include = false
+            }
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.getByName("release")
             }
