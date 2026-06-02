@@ -29,6 +29,15 @@ keyPassword=<key password>
 
 ## Per release: build, fingerprint, publish
 
+> **Toolchain:** build with **JDK 17** (AGP 8.7.3's supported JDK; newer JDKs
+> break lint). The committed Gradle wrapper pins **Gradle 8.11.1**, so always
+> invoke `./gradlew` (never a system `gradle`) — this is the same version
+> F-Droid uses to rebuild, which is what makes the build reproducible.
+>
+> ```sh
+> export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
+> ```
+
 1. Build the signed release APK:
 
    ```sh
