@@ -3,21 +3,15 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Translucent area beneath the growth curve -->
+    <!-- Single-color silhouette; the launcher tints this for themed icons -->
     <path
-        android:fillColor="#FFFFFF"
-        android:fillAlpha="0.16"
-        android:pathData="M28,80 C50,78 58,70 66,52 C71,40 76,32 80,28 L80,80 Z" />
-    <!-- The compounding-interest curve -->
-    <path
-        android:strokeColor="#FFFFFF"
+        android:strokeColor="#000000"
         android:strokeWidth="6.5"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:fillColor="@android:color/transparent"
         android:pathData="M28,80 C50,78 58,70 66,52 C71,40 76,32 80,28" />
-    <!-- Endpoint dot -->
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="#000000"
         android:pathData="M80,28 m-5.5,0 a5.5,5.5 0,1 0,11 0 a5.5,5.5 0,1 0,-11 0 z" />
 </vector>
