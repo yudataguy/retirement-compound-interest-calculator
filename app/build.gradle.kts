@@ -28,6 +28,13 @@ android {
         versionName = "0.1.0"
     }
 
+    // Don't embed the signed dependency-metadata block (a Play-specific
+    // artifact) in the APK — F-Droid rejects it and it harms reproducibility.
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
     signingConfigs {
         if (keystorePropertiesFile.exists()) {
             create("release") {
