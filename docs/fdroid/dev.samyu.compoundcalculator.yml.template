@@ -8,10 +8,20 @@ IssueTracker: https://github.com/yudataguy/retirement-compound-interest-calculat
 RepoType: git
 Repo: https://github.com/yudataguy/retirement-compound-interest-calculator.git
 
+# Reproducible build: F-Droid downloads this developer-signed APK, builds from
+# source, and ships this APK if the two match byte-for-byte. %v = versionName.
+Binaries: https://github.com/yudataguy/retirement-compound-interest-calculator/releases/download/v%v/app-release.apk
+
+# Lowercase, colon-free SHA-256 fingerprint of the keystore that signs the APK
+# uploaded to GitHub Releases. Generate the key first, then fill this in:
+#   apksigner verify --print-certs app-release.apk | grep SHA-256
+AllowedAPKSigningKeys:
+  - 5e74b401222db0bb508ece9a6475963db12e7cf07ab453fc05e323c400da521c
+
 Builds:
   - versionName: '0.1.0'
     versionCode: 1
-    commit: e6bcbab3ad9ade0a11d4e74d55aa3e48bd25e01a
+    commit: v0.1.0
     subdir: app
     gradle:
       - yes
